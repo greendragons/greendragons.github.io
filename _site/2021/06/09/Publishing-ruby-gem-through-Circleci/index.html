@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Publishing ruby gem through CircleCi &middot; Hyde
+    
+  </title>
+
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    
+    <div class="posts">
+      
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/poole/hyde/archive/v2.1.0.zip">Download</a>
+      <a class="sidebar-nav-item" href="https://github.com/poole/hyde">GitHub project</a>
+      <span class="sidebar-nav-item">Currently v2.1.0</span>
+    </nav>
+
+    <p>&copy; 2021. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Publishing ruby gem through CircleCi</h1>
+  <span class="post-date">09 Jun 2021</span>
+  <h3 id="overview">Overview</h3>
+<p>In this post I’ll cover writing simple ruby gem and publishing through CircleCi.
+Rather than focusing on best practices or patterns for writing gem, I’ll focus on having quick and dirty
+end to end system for releasing a gem.</p>
+
+<h3 id="table-of-contents">Table of Contents</h3>
+<ol>
+  <li><a href="###Writing-a-gem">Writing a gem</a></li>
+  <li><a href="###Adding-gemspec-file">Adding gemspec file</a></li>
+  <li><a href="#markdown-header-my-second-title">My Second Title</a></li>
+</ol>
+
+<h3 id="accounts-setup">Accounts Setup</h3>
+<p>In order to follow the tutorial please ensure to:</p>
+<ol>
+  <li>
+    <p>Create a github repo for this project, and name it whatever you want.
+This repository will be used to maintain our gem code.</p>
+  </li>
+  <li>
+    <p>Create a CircleCi account and add this repository, it will be asking to add config.yml file,
+but for now you can skip it as we will be adding it manually later.</p>
+  </li>
+</ol>
+
+<h3 id="writing-a-gem">Writing a gem</h3>
+<p>Make sure to select a unique name for the gem, for example <code>worldhello</code> also have same name <code>.rb</code> file,
+as users will use it as <code>require worldhello</code>.
+For uniqueness one can suffix with username <code>worldhello_&lt;username&gt;</code></p>
+
+<p>Create directory structure as:</p>
+
+<pre><code>ruby-gems-publish-example/
+└── lib
+    └── worldhello.rb
+</code></pre>
+
+<p>Put some content in <code>worldhello.rb</code> file</p>
+
+<pre><code>class WorldHello
+  def self.hello
+    "Hello World!"
+  end
+end
+</code></pre>
+
+<h3 id="adding-gemspec-file">Adding gemspec file</h3>
+<p>Gemspec file contains gem metadata like what is in the gem, who created it, and the version. This information is
+displayed on the rubygems website for that gem.</p>
+
+<p>Attributes of gemspec file are pretty self explanatory. Some attributes are required and others are recommended or optional.
+For more details about attributes in gemspec file refer : <a href="https://guides.rubygems.org/specification-reference/">link</a></p>
+
+<p>Let us add a file <code>worldhello.gemspec</code></p>
+
+<pre><code>ruby-gems-publish-example/
+├── lib
+│   └── worldhello.rb
+└── worldhello.gemspec
+</code></pre>
+
+<p>Contents of <code>worldhello.gemspec</code></p>
+
+<pre><code>Gem::Specification.new do |s|
+  s.name        = 'worldhello'
+  s.version     = '0.0.1'
+  s.summary     = "Hello World Gem!"
+  s.description = "A simple hello world gem"
+  s.authors     = ["&lt;author name&gt;"]
+  s.files       = ["lib/worldhello.rb"]
+  s.homepage    =
+    'https://rubygems.org/gems/worldhello'
+  s.license       = 'MIT'
+end
+</code></pre>
+
+<h3 id="building-gem-locally">Building gem locally</h3>
+<p>Gemspec file is used to build the gem.</p>
+<pre><code>&gt; gem build worldhello.gemspec
+</code></pre>
+
+<p>You will find worldhello-0.0.1.gem file created in the directory.</p>
+<pre><code>ruby-gems-publish-example/
+├── lib
+│   └── worldhello.rb
+├── worldhello-0.0.1.gem
+└── worldhello.gemspec
+</code></pre>
+
+<h3 id="adding-tests">Adding Tests</h3>
+<p>Add files <code>Rakefile</code> and <code>test/test_worldhello.rb</code></p>
+<pre><code>ruby-gems-publish-example/
+├── Rakefile
+├── lib
+│   └── worldhello.rb
+├── test
+│   └── test_worldhello.rb
+├── worldhello-0.0.1.gem
+└── worldhello.gemspec
+</code></pre>
+
+<p>Contents of Rakefile</p>
+<pre><code>require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+    t.libs &lt;&lt; 'test'
+end
+
+desc "Run tests"
+task :default =&gt; :test
+</code></pre>
+
+<p>Contents of test file <code>test_worldhello.rb</code></p>
+<pre><code>require 'minitest/autorun'
+require 'worldhello'
+
+class WorldHelloTest &lt; Minitest::Test
+    def test_hello_world
+        assert_equal "Hello World!",
+            WorldHello.hello
+    end
+end
+</code></pre>
+
+<p>Running tests</p>
+<pre><code>&gt; rake test
+</code></pre>
+
+<h3 id="setting-up-circleci-config">Setting up CircleCi config</h3>
+<p>First step is to create account with CircleCi if you don’t have one and then add project in the CircleCi account.
+Now on your local machine add file <code>.circleci/config.yml</code></p>
+<pre><code>version: 2
+
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build gem
+          command: gem build worldhello.gemspec
+      - run:
+          name: Install locally
+          command: gem install --development *.gem
+      - run:
+          name: Run Tests
+          command: rake test
+</code></pre>
+<p>This is simple CircleCi build config file, we can run all steps in just one job.</p>
+
+<h3 id="publishing-gem-with-api-key">Publishing gem with API key</h3>
+<p>In order to publish our gem, we need to have an account with rubygems.org and create a private API key
+with permission to push gems.
+For example private API key looks something like:</p>
+<pre><code>rubygems_4dc5a0061ebf5b500088933f56cec596ade0fa042a43413a
+</code></pre>
+
+<p>Add this API key in CircleCi environment variable</p>
+
+<p><img src="/assets/2021-06-09-Publishing-ruby-gem-through-Circleci/images/adding_api_key.png" alt="Adding API Key" /></p>
+
+<pre><code>Name: RUBY_GEM_API_KEY
+Value: rubygems_4dc5a0061ebf5b500088933f56cec596ade0fa042a43413a
+</code></pre>
+
+<p><code>gem push &lt;gemfile&gt;</code> expects API key in ~/.gem/credentials file.
+We add one more step in <code>config.yml</code> file</p>
+<pre><code>version: 2
+
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build gem
+          command: gem build worldhello.gemspec
+      - run:
+          name: Install locally
+          command: gem install --development *.gem
+      - run:
+          name: Run Tests
+          command: rake test
+      - run:
+          name: Publish Gem
+          command: |
+            mkdir -p ~/.gem
+            echo -e "---\r\n:rubygems_api_key: $RUBY_GEM_API_KEY" &gt; ~/.gem/credentials
+            chmod 0600 ~/.gem/credentials
+            gem push worldhello*.gem
+</code></pre>
+
+<p>Now when CircleCi build triggers, you’ll be able to see your gem published</p>
+
+<h3 id="versioning-gem">Versioning Gem</h3>
+<p>In this example we have considered a simple gem which just prints <code>Hello World!</code>, but what if
+we had something more meaningful then we would want to have an automated way of releasing our gem
+with updated version.</p>
+
+<p>Ideally we would like to have new version release with every merge to master branch.
+To achieve this we should maintain current version information and automatically update this version
+with every merge to master and use this updated version in gemspec file.
+But in this tutorial I won’t be covering auto-incrementing version, for now we can manually
+update versions in <code>version.rb</code> file.</p>
+
+<p>Add a file version.rb inside <code>lib</code> directory, with initial version defined.</p>
+<pre><code>module WorldHello
+    VERSION = '0.0.1'
+end
+</code></pre>
+
+<pre><code>ruby-gems-publish-example/
+├── Rakefile
+├── lib
+│   ├── version.rb
+│   └── worldhello.rb
+├── test
+│   └── test_worldhello.rb
+├── worldhello-0.0.1.gem
+└── worldhello.gemspec
+</code></pre>
+
+<p>Refer this version constant in gemspec.</p>
+
+<pre><code>require_relative('lib/version.rb')
+
+Gem::Specification.new do |s|
+  s.name        = 'worldhello'
+  s.version     = WorldHello::VERSION
+  s.summary     = "Hello World Gem!"
+  s.description = "A simple hello world gem"
+  s.authors     = ["&lt;author name&gt;"]
+  s.files       = ["lib/worldhello.rb"]
+  s.homepage    =
+    'https://rubygems.org/gems/worldhello'
+  s.license       = 'MIT'
+end
+</code></pre>
+
+<p>Just commit and push the changes and our gem will be published.
+Check your rubygems account it will list the authored gem:</p>
+
+<p><img src="/assets/2021-06-09-Publishing-ruby-gem-through-Circleci/images/published_gem.png" alt="Published Gem Image" /></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
