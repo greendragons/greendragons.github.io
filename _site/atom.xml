@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Hyde</title>
- <link href="https://greendragons.github.io/atom.xml" rel="self"/>
- <link href="https://greendragons.github.io/"/>
- <updated>2021-06-12T19:55:20+05:30</updated>
- <id>https://greendragons.github.io</id>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2024-07-23T23:40:54+05:30</updated>
+ <id>http://localhost:4000</id>
  <author>
    <name>Mark Otto</name>
    <email></email>
@@ -13,253 +13,63 @@
 
  
  <entry>
-   <title>Publishing ruby gem through CircleCi</title>
-   <link href="https://greendragons.github.io/2021/06/09/Publishing-ruby-gem-through-Circleci/"/>
-   <updated>2021-06-09T00:00:00+05:30</updated>
-   <id>https://greendragons.github.io/2021/06/09/Publishing-ruby-gem-through-Circleci</id>
-   <content type="html">&lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;
-&lt;p&gt;In this post I’ll cover writing simple ruby gem and publishing through CircleCi.
-Rather than focusing on best practices or patterns for writing gem, I’ll focus on having quick and dirty
-end to end system for releasing a gem.&lt;/p&gt;
+   <title>Introducing Hyde</title>
+   <link href="http://localhost:4000/2024/07/23/test-post/"/>
+   <updated>2024-07-23T00:00:00+05:30</updated>
+   <id>http://localhost:4000/2024/07/23/test-post</id>
+   <content type="html">&lt;p&gt;Hyde is a brazen two-column &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; theme that pairs a prominent sidebar with uncomplicated content. It’s based on &lt;a href=&quot;http://getpoole.com&quot;&gt;Poole&lt;/a&gt;, the Jekyll butler.&lt;/p&gt;
 
-&lt;h3 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;###Writing-a-gem&quot;&gt;Writing a gem&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;###Adding-gemspec-file&quot;&gt;Adding gemspec file&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#markdown-header-my-second-title&quot;&gt;My Second Title&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&quot;built-on-poole&quot;&gt;Built on Poole&lt;/h3&gt;
 
-&lt;h3 id=&quot;accounts-setup&quot;&gt;Accounts Setup&lt;/h3&gt;
-&lt;p&gt;In order to follow the tutorial please ensure to:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Create a github repo for this project, and name it whatever you want.
-This repository will be used to maintain our gem code.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Create a CircleCi account and add this repository, it will be asking to add config.yml file,
-but for now you can skip it as we will be adding it manually later.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by &lt;a href=&quot;https://twitter.com/mdo&quot;&gt;@mdo&lt;/a&gt;. Poole, and every theme built on it (like Hyde here) includes the following:&lt;/p&gt;
 
-&lt;h3 id=&quot;writing-a-gem&quot;&gt;Writing a gem&lt;/h3&gt;
-&lt;p&gt;Make sure to select a unique name for the gem, for example &lt;code&gt;worldhello&lt;/code&gt; also have same name &lt;code&gt;.rb&lt;/code&gt; file,
-as users will use it as &lt;code&gt;require worldhello&lt;/code&gt;.
-For uniqueness one can suffix with username &lt;code&gt;worldhello_&amp;lt;username&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Complete Jekyll setup included (layouts, config, &lt;a href=&quot;/404&quot;&gt;404&lt;/a&gt;, &lt;a href=&quot;/atom.xml&quot;&gt;RSS feed&lt;/a&gt;, posts, and &lt;a href=&quot;/about&quot;&gt;example page&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Mobile friendly design and development&lt;/li&gt;
+  &lt;li&gt;Easily scalable text and component sizing with &lt;code&gt;rem&lt;/code&gt; units in the CSS&lt;/li&gt;
+  &lt;li&gt;Support for a wide gamut of HTML elements&lt;/li&gt;
+  &lt;li&gt;Related posts (time-based, because Jekyll) below each post&lt;/li&gt;
+  &lt;li&gt;Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Create directory structure as:&lt;/p&gt;
+&lt;h3 id=&quot;hyde-features&quot;&gt;Hyde features&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;ruby-gems-publish-example/
-└── lib
-    └── worldhello.rb
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In addition to the features of Poole, Hyde adds the following:&lt;/p&gt;
 
-&lt;p&gt;Put some content in &lt;code&gt;worldhello.rb&lt;/code&gt; file&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Sidebar includes support for textual modules and a dynamically generated navigation with active link support&lt;/li&gt;
+  &lt;li&gt;Two orientations for content and sidebar, default (left sidebar) and &lt;a href=&quot;https://github.com/poole/lanyon#reverse-layout&quot;&gt;reverse&lt;/a&gt; (right sidebar), available via &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/poole/hyde#themes&quot;&gt;Eight optional color schemes&lt;/a&gt;, available via &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;class WorldHello
-  def self.hello
-    &quot;Hello World!&quot;
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/poole/hyde#readme&quot;&gt;Head to the readme&lt;/a&gt; to learn more.&lt;/p&gt;
 
-&lt;h3 id=&quot;adding-gemspec-file&quot;&gt;Adding gemspec file&lt;/h3&gt;
-&lt;p&gt;Gemspec file contains gem metadata like what is in the gem, who created it, and the version. This information is
-displayed on the rubygems website for that gem.&lt;/p&gt;
+&lt;h3 id=&quot;browser-support&quot;&gt;Browser support&lt;/h3&gt;
 
-&lt;p&gt;Attributes of gemspec file are pretty self explanatory. Some attributes are required and others are recommended or optional.
-For more details about attributes in gemspec file refer : &lt;a href=&quot;https://guides.rubygems.org/specification-reference/&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hyde is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.&lt;/p&gt;
 
-&lt;p&gt;Let us add a file &lt;code&gt;worldhello.gemspec&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;download&quot;&gt;Download&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code&gt;ruby-gems-publish-example/
-├── lib
-│   └── worldhello.rb
-└── worldhello.gemspec
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hyde is developed on and hosted with GitHub. Head to the &lt;a href=&quot;https://github.com/poole/hyde&quot;&gt;GitHub repository&lt;/a&gt; for downloads, bug reports, and features requests.&lt;/p&gt;
 
-&lt;p&gt;Contents of &lt;code&gt;worldhello.gemspec&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Thanks!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>What's Jekyll?</title>
+   <link href="http://localhost:4000/2012/02/06/whats-jekyll/"/>
+   <updated>2012-02-06T00:00:00+05:30</updated>
+   <id>http://localhost:4000/2012/02/06/whats-jekyll</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/mojombo/jekyll/blob/master/README.markdown&quot;&gt;the project’s readme&lt;/a&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Gem::Specification.new do |s|
-  s.name        = &apos;worldhello&apos;
-  s.version     = &apos;0.0.1&apos;
-  s.summary     = &quot;Hello World Gem!&quot;
-  s.description = &quot;A simple hello world gem&quot;
-  s.authors     = [&quot;&amp;lt;author name&amp;gt;&quot;]
-  s.files       = [&quot;lib/worldhello.rb&quot;]
-  s.homepage    =
-    &apos;https://rubygems.org/gems/worldhello&apos;
-  s.license       = &apos;MIT&apos;
-end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Jekyll is a simple, blog aware, static site generator. It takes a template directory […] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;h3 id=&quot;building-gem-locally&quot;&gt;Building gem locally&lt;/h3&gt;
-&lt;p&gt;Gemspec file is used to build the gem.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; gem build worldhello.gemspec
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It’s an immensely useful tool and one we encourage you to use here with Hyde.&lt;/p&gt;
 
-&lt;p&gt;You will find worldhello-0.0.1.gem file created in the directory.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ruby-gems-publish-example/
-├── lib
-│   └── worldhello.rb
-├── worldhello-0.0.1.gem
-└── worldhello.gemspec
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;adding-tests&quot;&gt;Adding Tests&lt;/h3&gt;
-&lt;p&gt;Add files &lt;code&gt;Rakefile&lt;/code&gt; and &lt;code&gt;test/test_worldhello.rb&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ruby-gems-publish-example/
-├── Rakefile
-├── lib
-│   └── worldhello.rb
-├── test
-│   └── test_worldhello.rb
-├── worldhello-0.0.1.gem
-└── worldhello.gemspec
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Contents of Rakefile&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;require &apos;rake/testtask&apos;
-
-Rake::TestTask.new do |t|
-    t.libs &amp;lt;&amp;lt; &apos;test&apos;
-end
-
-desc &quot;Run tests&quot;
-task :default =&amp;gt; :test
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Contents of test file &lt;code&gt;test_worldhello.rb&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;require &apos;minitest/autorun&apos;
-require &apos;worldhello&apos;
-
-class WorldHelloTest &amp;lt; Minitest::Test
-    def test_hello_world
-        assert_equal &quot;Hello World!&quot;,
-            WorldHello.hello
-    end
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Running tests&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;gt; rake test
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;setting-up-circleci-config&quot;&gt;Setting up CircleCi config&lt;/h3&gt;
-&lt;p&gt;First step is to create account with CircleCi if you don’t have one and then add project in the CircleCi account.
-Now on your local machine add file &lt;code&gt;.circleci/config.yml&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;version: 2
-
-jobs:
-  build:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Build gem
-          command: gem build worldhello.gemspec
-      - run:
-          name: Install locally
-          command: gem install --development *.gem
-      - run:
-          name: Run Tests
-          command: rake test
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is simple CircleCi build config file, we can run all steps in just one job.&lt;/p&gt;
-
-&lt;h3 id=&quot;publishing-gem-with-api-key&quot;&gt;Publishing gem with API key&lt;/h3&gt;
-&lt;p&gt;In order to publish our gem, we need to have an account with rubygems.org and create a private API key
-with permission to push gems.
-For example private API key looks something like:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;rubygems_4dc5a0061ebf5b500088933f56cec596ade0fa042a43413a
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add this API key in CircleCi environment variable&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/2021-06-09-Publishing-ruby-gem-through-Circleci/images/adding_api_key.png&quot; alt=&quot;Adding API Key&quot; /&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Name: RUBY_GEM_API_KEY
-Value: rubygems_4dc5a0061ebf5b500088933f56cec596ade0fa042a43413a
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;gem push &amp;lt;gemfile&amp;gt;&lt;/code&gt; expects API key in ~/.gem/credentials file.
-We add one more step in &lt;code&gt;config.yml&lt;/code&gt; file&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;version: 2
-
-jobs:
-  build:
-    machine: true
-    steps:
-      - checkout
-      - run:
-          name: Build gem
-          command: gem build worldhello.gemspec
-      - run:
-          name: Install locally
-          command: gem install --development *.gem
-      - run:
-          name: Run Tests
-          command: rake test
-      - run:
-          name: Publish Gem
-          command: |
-            mkdir -p ~/.gem
-            echo -e &quot;---\r\n:rubygems_api_key: $RUBY_GEM_API_KEY&quot; &amp;gt; ~/.gem/credentials
-            chmod 0600 ~/.gem/credentials
-            gem push worldhello*.gem
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now when CircleCi build triggers, you’ll be able to see your gem published&lt;/p&gt;
-
-&lt;h3 id=&quot;versioning-gem&quot;&gt;Versioning Gem&lt;/h3&gt;
-&lt;p&gt;In this example we have considered a simple gem which just prints &lt;code&gt;Hello World!&lt;/code&gt;, but what if
-we had something more meaningful then we would want to have an automated way of releasing our gem
-with updated version.&lt;/p&gt;
-
-&lt;p&gt;Ideally we would like to have new version release with every merge to master branch.
-To achieve this we should maintain current version information and automatically update this version
-with every merge to master and use this updated version in gemspec file.
-But in this tutorial I won’t be covering auto-incrementing version, for now we can manually
-update versions in &lt;code&gt;version.rb&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;p&gt;Add a file version.rb inside &lt;code&gt;lib&lt;/code&gt; directory, with initial version defined.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;module WorldHello
-    VERSION = &apos;0.0.1&apos;
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;ruby-gems-publish-example/
-├── Rakefile
-├── lib
-│   ├── version.rb
-│   └── worldhello.rb
-├── test
-│   └── test_worldhello.rb
-├── worldhello-0.0.1.gem
-└── worldhello.gemspec
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Refer this version constant in gemspec.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;require_relative(&apos;lib/version.rb&apos;)
-
-Gem::Specification.new do |s|
-  s.name        = &apos;worldhello&apos;
-  s.version     = WorldHello::VERSION
-  s.summary     = &quot;Hello World Gem!&quot;
-  s.description = &quot;A simple hello world gem&quot;
-  s.authors     = [&quot;&amp;lt;author name&amp;gt;&quot;]
-  s.files       = [&quot;lib/worldhello.rb&quot;]
-  s.homepage    =
-    &apos;https://rubygems.org/gems/worldhello&apos;
-  s.license       = &apos;MIT&apos;
-end
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Just commit and push the changes and our gem will be published.
-Check your rubygems account it will list the authored gem:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/2021-06-09-Publishing-ruby-gem-through-Circleci/images/published_gem.png&quot; alt=&quot;Published Gem Image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Find out more by &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;visiting the project on GitHub&lt;/a&gt;.&lt;/p&gt;
 </content>
  </entry>
  
